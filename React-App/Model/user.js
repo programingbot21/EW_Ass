@@ -22,6 +22,8 @@ const CreateSchema = new mongoose.Schema({
 });
 
 // Check if the model already exists before defining it
-const User1 = mongoose.models.User || mongoose.model("User", CreateSchema);
+const Us1 = mongoose.models.reactus || mongoose.model("reactus", CreateSchema);
 
-export default User1;
+export default Us1;
+
+

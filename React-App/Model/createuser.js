@@ -28,6 +28,6 @@ const userSchema = new mongoose.Schema({
 
 }, {timestamps:true})
 
-const User = mongoose.model('us', userSchema)
+const User = mongoose.model('task', userSchema)
 
 export default User;

@@ -1,8 +1,8 @@
 import express from "express";
 
 
-
-import User1 from "../Model/createuser.js";
+import Us1 from "../Model/user.js";
+// import User1 from "../Model/createuser.js";
 
 
 const router = express.Router();
@@ -10,7 +10,7 @@ const router = express.Router();
 // Create User
 router.post("/users/create", async (req, res) => {
   try {
-    const user = new User1(req.body);
+    const user = new Us1(req.body);
     await user.save();
     res.status(201).json(user);
   } catch (error) {
@@ -18,21 +18,17 @@ router.post("/users/create", async (req, res) => {
   }
 });
 
-// Get All Users
-router.get("/users", async (req, res) => {
-  const users = await User1.find();
-  res.json(users);
-});
+// 67e8371a86f868fef8db867d
 
 // Update User
 router.put("/users/:userId", async (req, res) => {
-  const updatedUser = await User1.findByIdAndUpdate(req.params.userId, req.body, { new: true });
+  const updatedUser = await Us1.findByIdAndUpdate(req.params.userId, req.body, { new: true });
   res.json(updatedUser);
 });
 
 // Delete User
 router.delete("/users/:userId", async (req, res) => {
-  await User1.findByIdAndDelete(req.params.userId);
+  await Us1.findByIdAndDelete(req.params.userId);
   res.json({ msg: "User deleted" });
 });
 
