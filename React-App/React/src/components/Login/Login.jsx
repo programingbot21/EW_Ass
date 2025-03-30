@@ -18,10 +18,10 @@ const Login = () => {
     e.preventDefault();
     setError("");
     try {
-      const { data } = await axios.post("http://localhost:7000/api/auth/login", formData);
+      const { data } = await axios.post("http://localhost:7001/api/auth/login", formData);
       localStorage.setItem("authToken", data.token);
       alert("Login successful!");
-      navigate("/dashboard");
+      navigate("/");
     } catch (err) {
       setError(err.response?.data?.msg || "Invalid credentials");
     }

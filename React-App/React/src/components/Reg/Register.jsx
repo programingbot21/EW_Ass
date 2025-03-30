@@ -19,7 +19,7 @@ const Register = () => {
     e.preventDefault();
     setError("");
     try {
-      await axios.post("http://localhost:7000/api/auth/register", formData);
+      await axios.post("http://localhost:7001/api/auth/register", formData);
       alert("Registration successful! Please log in.");
       navigate("/login");
     } catch (err) {

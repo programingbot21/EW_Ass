@@ -18,7 +18,11 @@ router.post("/users/create", async (req, res) => {
   }
 });
 
-// 67e8371a86f868fef8db867d
+// Get All Users
+// router.get("/users/users", async (req, res) => {
+//   const users = await Us1.find();
+//   res.json(users);
+// });
 
 // Update User
 router.put("/users/:userId", async (req, res) => {
@@ -34,18 +38,36 @@ router.delete("/users/:userId", async (req, res) => {
 
 
 
-
-
-  
-
-router.get("/", async (req, res) => {
+router.get("/users", async (req, res) => {
   try {
-    const users = await userId.find();
-    res.json(users);
+    let { page, limit } = req.query;
+    page = parseInt(page) || 1;
+    limit = parseInt(limit) || 5;
+
+    const skip = (page - 1) * limit;
+    const users = await Us1.find().skip(skip).limit(limit);
+    const totalUsers = await Us1.countDocuments();
+
+    res.json({
+      users,
+      totalPages: Math.ceil(totalUsers / limit),
+      currentPage: page,
+    });
   } catch (error) {
     res.status(500).json({ message: "Error fetching users" });
   }
 });
+
+  
+
+// router.get("/users", async (req, res) => {
+//   try {
+//     const users = await userId.find();
+//     res.json(users);
+//   } catch (error) {
+//     res.status(500).json({ message: "Error fetching users" });
+//   }
+// });
 
 
 
